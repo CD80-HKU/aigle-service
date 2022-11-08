@@ -7,18 +7,14 @@ def preprocess():
 
     data_instance = DataInstance()
 
+    if data_instance.has_done_preprocess:
+        return
+
     data = data_instance.get_data()
 
     data_test = data_instance.get_data_test()
 
     y = data_instance.get_y()
-
-    # drop data with default label
-    try:
-        data = data.drop(['APPLICATION_ID', 'DEFAULT_LABEL'], axis=1)
-        data_test = data_test.drop(['APPLICATION_ID', 'DEFAULT_LABEL'], axis=1)
-    except:
-        pass
 
     print("data APPLICATION_ID and DEFAULT_LABEL dropped")
 
@@ -65,3 +61,5 @@ def preprocess():
     data_instance.set_data_train(data_train)
     data_instance.set_y_train(y_train)
     data_instance.set_y(y)
+
+    data_instance.set_has_done_preprocess(True)

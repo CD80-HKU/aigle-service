@@ -37,4 +37,13 @@ def load_data():
 
     print('delete data that missing ratio > 25%')
 
+    try:
+        # drop data with default label
+        data = data.drop(['APPLICATION_ID', 'DEFAULT_LABEL'], axis=1)
+        data_test = data_test.drop(
+            ['APPLICATION_ID', 'DEFAULT_LABEL'], axis=1)
+    except Exception as e:
+        print('drop exception: ' + e)
+        pass
+
     return data, y, y_label, data_test, y_labeltest

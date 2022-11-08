@@ -32,6 +32,8 @@ class DataInstance():
 
     y_train = None
 
+    has_done_preprocess = False
+
     def __init__(self):
         self.data, self.y, self.y_label, self.data_test, self.y_labeltest = self.load_data()
 
@@ -105,3 +107,6 @@ class DataInstance():
 
     def set_y_train(self, y_train):
         self.y_train = y_train
+
+    def set_has_done_preprocess(self, has_done_preprocess):
+        self.has_done_preprocess = has_done_preprocess

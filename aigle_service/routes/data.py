@@ -1,3 +1,5 @@
+import sys
+from aigle_service.services.xgb_classify.xgb_classify import xgb_classify
 from flask import Blueprint
 
 from aigle_service.services.train.data_instance import DataInstance
@@ -9,15 +11,17 @@ from ..const import base_url
 data = Blueprint('data', __name__)
 
 
-# @home.route(base_url + 'datasource/list', methods=['GET'])
-# def index():
-#     return {
-#         'data': 'Hello World!',
-#         'baseResponse': {
-#             'code': 200,
-#             'message': 'success'
-#         }
-#     }, 200
+@data.route(base_url + 'datasource/list', methods=['GET'])
+def index():
+    print('version ' + sys.version)
+    return {
+        'data': sys.version,
+        'baseResponse': {
+            'code': 200,
+            'message': 'success'
+        }
+    }, 200
+
 
 @data.route(base_url + 'data/load', methods=['GET'])
 def load_data():
@@ -81,6 +85,28 @@ def pre_process():
 
         return {
             'data': "preprocess done, you can test the model now.",
+            'baseResponse': {
+                'code': 200,
+                'message': 'success'
+            }
+        }
+
+    except Exception as e:
+        return {
+            'data': str(e),
+            'baseResponse': {
+                'code': 500,
+                'message': 'Catch error: ' + str(e)
+            }
+        }, 500
+
+
+@data.route(base_url + 'data/xgboost', methods=['GET'])
+def xgboost():
+    try:
+        xgb_classify()
+        return {
+            'data': "xgboost done",
             'baseResponse': {
                 'code': 200,
                 'message': 'success'

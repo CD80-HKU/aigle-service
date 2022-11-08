@@ -1,5 +1,4 @@
-from .home import home
-
+from .data import data
 
 def init_app(app):
-    app.register_blueprint(home)
+    app.register_blueprint(data)

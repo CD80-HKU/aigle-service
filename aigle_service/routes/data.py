@@ -104,9 +104,9 @@ def pre_process():
 @data.route(base_url + 'data/xgboost', methods=['GET'])
 def xgboost():
     try:
-        xgb_classify()
+        res = xgb_classify()
         return {
-            'data': "xgboost done",
+            'data': res,
             'baseResponse': {
                 'code': 200,
                 'message': 'success'
@@ -114,6 +114,7 @@ def xgboost():
         }
 
     except Exception as e:
+        print('error: ' + str(e))
         return {
             'data': str(e),
             'baseResponse': {
@@ -121,3 +122,26 @@ def xgboost():
                 'message': 'Catch error: ' + str(e)
             }
         }, 500
+
+
+# @data.route(base_url + 'data/clf', methods=['GET'])
+# def xgboost():
+#     try:
+#         res = clf_classify()
+#         return {
+#             'data': res,
+#             'baseResponse': {
+#                 'code': 200,
+#                 'message': 'success'
+#             }
+#         }
+
+#     except Exception as e:
+#         print('error: ' + str(e))
+#         return {
+#             'data': str(e),
+#             'baseResponse': {
+#                 'code': 500,
+#                 'message': 'Catch error: ' + str(e)
+#             }
+#         }, 500

@@ -8,6 +8,7 @@ def preprocess():
     data_instance = DataInstance()
 
     if data_instance.has_done_preprocess:
+        print('Preprocess has been done')
         return
 
     data = data_instance.get_data()

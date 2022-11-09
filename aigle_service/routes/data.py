@@ -126,7 +126,7 @@ def xgboost():
 
 
 @data.route(base_url + 'data/clf', methods=['GET'])
-def xgboost():
+def clf():
     try:
         res = clf_classify()
         return {

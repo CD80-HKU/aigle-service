@@ -57,6 +57,10 @@ class DataInstance(metaclass=SingletonMeta):
 
     y_train = None
 
+    t = None
+
+    probas = None
+
     has_done_preprocess = False
 
     def __init__(self):
@@ -100,6 +104,12 @@ class DataInstance(metaclass=SingletonMeta):
     def get_y_train(self):
         return self.y_train
 
+    def get_t(self):
+        return self.t
+
+    def get_probas(self):
+        return self.probas
+
     def set_data(self, data):
         self.data = data
 
@@ -135,3 +145,9 @@ class DataInstance(metaclass=SingletonMeta):
 
     def set_has_done_preprocess(self, has_done_preprocess):
         self.has_done_preprocess = has_done_preprocess
+
+    def set_t(self, t):
+        self.t = t
+
+    def set_probas(self, probas):
+        self.probas = probas

@@ -1,4 +1,3 @@
-#import lightgbm as lgb
 import pandas as pd
 from xgboost import XGBClassifier
 from xgboost import plot_importance
@@ -37,6 +36,8 @@ def xgb_classify():
     probas = []
     y_pre, probas = xgb_inner_classify(data_train, y_train, data_test)
 
+    data_instance.set_probas(probas)
+
     print("xgb_classify done")
 
 #
@@ -57,6 +58,8 @@ def xgb_classify():
                       eval_metric='auc').fit(data_train, y_train)
 
     print("xgb_classify 2 done")
+
+    data_instance.set_t(t)
 
     # model = SelectFromModel(t, prefit=True, threshold=0.003)
     # feature_idx = model.get_support()

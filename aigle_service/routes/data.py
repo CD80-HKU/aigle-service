@@ -1,4 +1,5 @@
 import sys
+from aigle_service.services.clf_classify import clf_classify
 from aigle_service.services.xgb_classify.xgb_classify import xgb_classify
 from flask import Blueprint
 
@@ -124,24 +125,24 @@ def xgboost():
         }, 500
 
 
-# @data.route(base_url + 'data/clf', methods=['GET'])
-# def xgboost():
-#     try:
-#         res = clf_classify()
-#         return {
-#             'data': res,
-#             'baseResponse': {
-#                 'code': 200,
-#                 'message': 'success'
-#             }
-#         }
+@data.route(base_url + 'data/clf', methods=['GET'])
+def xgboost():
+    try:
+        res = clf_classify()
+        return {
+            'data': res,
+            'baseResponse': {
+                'code': 200,
+                'message': 'success'
+            }
+        }
 
-#     except Exception as e:
-#         print('error: ' + str(e))
-#         return {
-#             'data': str(e),
-#             'baseResponse': {
-#                 'code': 500,
-#                 'message': 'Catch error: ' + str(e)
-#             }
-#         }, 500
+    except Exception as e:
+        print('error: ' + str(e))
+        return {
+            'data': str(e),
+            'baseResponse': {
+                'code': 500,
+                'message': 'Catch error: ' + str(e)
+            }
+        }, 500
